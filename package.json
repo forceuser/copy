@@ -1,0 +1,42 @@
+{
+	"name": "copy",
+	"version": "0.0.1",
+	"description": "projectdescription",
+	"license": "MIT",
+	"main": "dist/copy.js",
+	"module": "src/index.js",
+	"engines": {
+		"node": ">=10.11.0"
+	},
+	"_moduleAliases": {
+		"copy": "./src/index.js"
+	},
+	"scripts": {
+		"init": "rm -rf node_modules > /dev/null && npm i",
+		"bump": "npm version patch --no-git-tag-version",
+		"update": "npx npm-check-updates -u && npm install && npm update --dev && npm audit fix",
+		"test": "eslint . && run-p test:*",
+		"fix": "eslint --fix .",
+		"coverage": "codecov",
+		"release": "npm run release-patch",
+		"release-nobump": "va-release --no-github --no-npm",
+		"release-patch": "va-release --version patch",
+		"release-minor": "va-release --version minor",
+		"release-major": "va-release --version major"
+	},
+	"keywords": [],
+	"dependencies": {},
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/forceuser/copy.git"
+	},
+	"bugs": {
+		"url": "https://github.com/forceuser/copy/issues"
+	},
+	"homepage": "https://github.com/forceuser/copy#readme",
+	"tonicExampleFilename": "tonic-example.js",
+	"va-release": {
+		"library": "copy"
+	}
+}
