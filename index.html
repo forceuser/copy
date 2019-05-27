@@ -8,6 +8,7 @@
 		<link rel="alternate" hreflang="x-default" href="https://forceuser.github.io/copy/">
 		<link rel="alternate" hreflang="en" href="https://forceuser.github.io/copy/?lang=en" />
 		<link rel="alternate" hreflang="ru" href="https://forceuser.github.io/copy/?lang=ru" />
+		<link rel="alternate" hreflang="uk" href="https://forceuser.github.io/copy/?lang=uk" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 		<script>
 			window.urlParams = window.location.search.replace(/^\?/, "").split("&").reduce((result, paramPair) => {
@@ -58,8 +59,28 @@
 
 			html {
                 background-color: var(--color--bg, #fafafa);
-                color: var(--color--text, #333333);
-            }
+				color: var(--color--text, #333333);
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+                    "Ubuntu", "Cantarell", "Fira Sans",
+					"Droid Sans", "Helvetica Neue", sans-serif;
+				overflow: hidden;
+			}
+
+			body {
+				display: flex;
+				opacity: 0;
+				transform: translateY(1rem);
+				padding: 1rem;
+				transition: opacity 0.3s ease, transform 0.3s ease;
+				transition-delay: 0.2s;
+			}
+			@media (min-height: 850px) {
+				body {
+					min-height: 100vh;
+					justify-content: center;
+					align-items: center;
+				}
+			}
 
             a,
             a:link {
@@ -73,133 +94,6 @@
             a:active {
                 color: var(--color--link-active, #ee0000);
             }
-
-            html,
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-                    "Ubuntu", "Cantarell", "Fira Sans",
-                    "Droid Sans", "Helvetica Neue", sans-serif;
-                margin: 0;
-                padding: 0;
-            }
-
-
-
-            body {
-                margin: 1rem;
-            }
-
-			.button {
-				position: relative;
-				padding: 0.75rem 1rem;
-				border: 1px solid #a3a3a3dd;
-				font-size: 1rem;
-				font-weight: 500;
-				transition: border-color 0.3s ease;
-			}
-			.button span {
-				opacity: 0.8;
-				transition: all 0.3s ease;
-			}
-			.clickable {
-				cursor: pointer;
-			}
-			.wrap {
-				word-break: break-all;
-			}
-			.button.transparent {
-				font-weight: normal;
-				border-color: #a3a3a322;
-			}
-
-			.button.transparent span {
-				opacity: 0.6;
-			}
-			.button.success {
-				--button-color: rgb(46, 161, 46);
-			}
-
-			.button:hover {
-				border-color: currentColor;
-			}
-			.button:hover span, .button:focus span {
-				opacity: 1;
-			}
-
-			.button::before {
-				content: "";
-				position: absolute;
-				top: 0px;
-				left: 0px;
-				right: 0px;
-				bottom: 0px;
-				background-color: #a3a3a350;
-				opacity: 0;
-				transition: all 0.3s ease;
-			}
-
-			.button::after {
-				content: "";
-				position: absolute;
-				top: 0px;
-				left: 0px;
-				right: 0px;
-				bottom: 0px;
-				box-shadow: 0px 0px 0px 2px currentColor;
-				opacity: 0;
-				transition: all 0.3s ease;
-			}
-
-			.button:hover::before {
-				opacity: 0.3;
-			}
-
-			.button:active::before {
-				opacity: 1;
-			}
-
-			.button:focus::after{
-				opacity: 1;
-			}
-
-			.button-panel {
-				margin-top: 0.25rem;
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(10rem, auto));
-				grid-gap: 0.5rem 1rem;
-			}
-
-			.text-panel {
-				padding: 1rem 1rem;
-				background-color: #a3a3a342;
-				border-radius: 0.25rem;
-
-				display: grid;
-				grid-auto-rows: min-content;
-				grid-auto-flow: row;
-				grid-gap: 1rem 1rem;
-			}
-
-			.form-layout {
-				display: grid;
-				grid-auto-rows: min-content;
-				grid-auto-flow: row;
-				grid-gap: 1.5rem 1rem;
-			}
-			.form-layout:not(.active) {
-				display: none;
-			}
-
-
-			body {
-				display: flex;
-			}
-
-			.main-form {
-				width: 100%;
-				max-width: 480px;
-				margin: 1.5rem auto;
-			}
 		</style>
 	</head>
 	<body>
@@ -211,21 +105,15 @@
 				<div class="text-panel">
 				</div>
 				<div class="button-panel">
-					<button type="submit" autofocus class="button default success clickable" aria-label="Copy text to clipboard">
+					<button type="submit" autofocus class="button default success clickable">
 						<span data-nls="common.accept">Accept</span>
 					</button>
-					<button type="button" data-button="close" class="button transparent clickable" aria-label="Do not copy anything and close this page">
+					<button type="button" data-button="close" class="button transparent clickable">
 						<span data-nls="common.decline">Decline</span>
 					</button>
 				</div>
 			</div>
 			<div class="form-layout" data-state="empty">
-				<h2>
-					<span data-nls="state-empty.title">Sorry, there no text had been provided to copy</span>
-				</h2>
-				<p>
-					<span data-nls="state-empty.text">Text should be specified with <b>text</b> url argument, for example <a href="https://forceuser.github.io/copy?text=content%20example">https://forceuser.github.io/copy?text=<span class="wrap">content%20example</span></a></span>
-				</p>
 			</div>
 			<div class="form-layout" data-state="success">
 				<h2>
@@ -244,9 +132,82 @@
 		<script src="./spatial-navigation-polyfill.min.js" defer async>
 		</script>
 		<script>
-			nls = {
+			const nls = {
+				"ru": {
+					"common": {
+						"accept": "Принять",
+						"decline": "Отклонить",
+						"close": "Закрыть",
+					},
+					"state-ready": {
+						"title": "Вы хотите скопировать следующий текст в буфер обмена?"
+					},
+					"state-empty": {
 
+					},
+					"state-success": {
+						"title": "Текст успешно скопирован",
+						"text": "Теперь вы можете закрыть это окно",
+					}
+				},
+				"uk": {
+					"common": {
+						"accept": "Прийняти",
+						"decline": "Відхилити",
+						"close": "Закрити",
+					},
+					"state-ready": {
+						"title": "Ви бажаєте скопіювати наступний текст в буфер обміну?"
+					},
+					"state-empty": {
+
+					},
+					"state-success": {
+						"title": "Текст успішно скопійовано",
+						"text": "Тепер ви можете закрити це вікно",
+					}
+				},
+				"en": {
+					"common": {
+						"accept": "Accept",
+						"decline": "Decline",
+						"close": "Close",
+					},
+					"state-ready": {
+						"title": "Do you want to copy the following text to clipboard?"
+					},
+					"state-empty": {
+
+					},
+					"state-success": {
+						"title": "Text successfully copied",
+						"text": "You may close this window now",
+					}
+				}
 			};
+
+			function get (src, path) {
+				const p = path.replace(/["']/g, "").replace(/\[/g, ".").replace(/\]/g, "").split(".");
+				let c = src;
+				if (p[0]) {
+					for (let i = 0; i < p.length; i++) {
+						if (i === p.length - 1) {
+							return c[p[i]];
+						}
+						c = c[p[i]];
+						if (c == null || typeof c !== "object") {
+							return undefined;
+						}
+					}
+				}
+				return c;
+			}
+			const lang = window.lang.match(/^(\w+)/)[1];
+			console.log("LANG", lang);
+			[...document.querySelectorAll(`[data-nls]`)].forEach(element => {
+				const path = element.getAttribute("data-nls");
+				element.innerHTML = get(nls[lang], path) || get(nls["en"], path) || `[${path}]`;
+			});
 		</script>
 		<script>
 
@@ -256,6 +217,7 @@
 					event.preventDefault();
 					document.removeEventListener("copy", onCopy);
 					window.close();
+					history.back();
 					document.querySelector(`.form-layout.active`).classList.remove("active");
 					document.querySelector(`.form-layout[data-state="success"]`).classList.add("active");
 					document.querySelector(`.form-layout[data-state="success"] button`).focus();
@@ -294,5 +256,6 @@
 			}
 
 		</script>
+		<link rel="stylesheet" type="text/css" href="./index.css" />
 	</body>
 </html>

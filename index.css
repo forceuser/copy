@@ -1,0 +1,119 @@
+body {
+	transform: translateY(0rem);
+	opacity: 1 !important;
+}
+
+.button {
+	position   : relative;
+	padding    : 0.75rem 1rem;
+	border     : 1px solid #a3a3a3dd;
+	font-size  : 1rem;
+	font-weight: 500;
+	transition : border-color 0.3s ease;
+}
+
+.button span {
+	opacity   : 0.8;
+	transition: all 0.3s ease;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.wrap {
+	word-break: break-all;
+}
+
+.button.transparent {
+	font-weight : normal;
+	border-color: #a3a3a322;
+}
+
+.button.transparent span {
+	opacity: 0.6;
+}
+
+.button.success {
+	--button-color: rgb(46, 161, 46);
+}
+
+.button:hover {
+	border-color: currentColor;
+}
+
+.button:hover span,
+.button:focus span {
+	opacity: 1;
+}
+
+.button::before {
+	content         : "";
+	position        : absolute;
+	top             : 0px;
+	left            : 0px;
+	right           : 0px;
+	bottom          : 0px;
+	background-color: #a3a3a350;
+	opacity         : 0;
+	transition      : all 0.3s ease;
+}
+
+.button::after {
+	content   : "";
+	position  : absolute;
+	top       : 0px;
+	left      : 0px;
+	right     : 0px;
+	bottom    : 0px;
+	box-shadow: 0px 0px 0px 2px currentColor;
+	opacity   : 0;
+	transition: all 0.3s ease;
+}
+
+.button:hover::before {
+	opacity: 0.3;
+}
+
+.button:active::before {
+	opacity: 1;
+}
+
+.button:focus::after {
+	opacity: 1;
+}
+
+.button-panel {
+	margin-top           : 0.25rem;
+	display              : grid;
+	grid-template-columns: repeat(auto-fill, minmax(10rem, auto));
+	grid-gap             : 0.5rem 1rem;
+}
+
+.text-panel {
+	padding         : 1rem 1rem;
+	background-color: #a3a3a342;
+	border-radius   : 0.25rem;
+
+	display       : grid;
+	grid-auto-rows: min-content;
+	grid-auto-flow: row;
+	grid-gap      : 1rem 1rem;
+}
+
+.form-layout {
+	display       : grid;
+	grid-auto-rows: min-content;
+	grid-auto-flow: row;
+	grid-gap      : 1.5rem 1rem;
+}
+
+.form-layout:not(.active) {
+	display: none;
+}
+
+.main-form {
+	width    : 100%;
+	max-width: 480px;
+	margin   : 1.5rem auto;
+}
