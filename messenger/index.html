@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>messenger redirect</title>
+		<meta property="description" content="Share message using messenger app" />
+		<link rel="canonical" href="https://forceuser.github.io/copy/messenger/" />
+		<link rel="alternate" hreflang="x-default" href="https://forceuser.github.io/copy/messenger/">
+		<link rel="alternate" hreflang="en" href="https://forceuser.github.io/copy/messenger/?lang=en" />
+		<link rel="alternate" hreflang="ru" href="https://forceuser.github.io/copy/messenger/?lang=ru" />
+		<link rel="alternate" hreflang="uk" href="https://forceuser.github.io/copy/messenger/?lang=uk" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+		<script>
+			window.urlParams = window.location.search.replace(/^\?/, "").split("&").reduce((result, paramPair) => {
+				paramPair = paramPair.split("=");
+				var key = paramPair[0];
+				var value = paramPair[1];
+				result[key] = value;
+				return result;
+			}, {});
+			window.lang = window.urlParams.lang || navigator.language || navigator.userLanguage;
+			document.documentElement.setAttribute("lang", window.lang);
+			window.location.replace(`fb-messenger://share?link=${encodeURIComponent(window.urlParams.text)}`);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
