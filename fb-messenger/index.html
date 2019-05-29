@@ -20,7 +20,7 @@
 			}, {});
 			window.lang = window.urlParams.lang || navigator.language || navigator.userLanguage;
 			document.documentElement.setAttribute("lang", window.lang);
-			window.location.replace(`fb-messenger://share?link=${window.urlParams.text}`);
+			window.location.replace(`fb-messenger://share/?link=${window.urlParams.text}`);
 		</script>
 	</head>
 	<body>
