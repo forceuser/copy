@@ -20,7 +20,7 @@
 			}, {});
 			window.lang = window.urlParams.lang || navigator.language || navigator.userLanguage;
 			document.documentElement.setAttribute("lang", window.lang);
-			window.location.replace(`viber://forward?text=${encodeURIComponent(window.urlParams.text)}`);
+			window.location.replace(`viber://forward?text=${window.urlParams.text}`);
 		</script>
 	</head>
 	<body>
