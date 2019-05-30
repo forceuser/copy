@@ -18,11 +18,29 @@
 				result[key] = value;
 				return result;
 			}, {});
+
+			function dom (html) {
+				const div = document.createElement("div");
+				div.innerHTML = (html || "").trim();
+				return [...div.childNodes];
+			}
+
 			window.lang = window.urlParams.lang || navigator.language || navigator.userLanguage;
 			document.documentElement.setAttribute("lang", window.lang);
-			window.location.replace(`fb-messenger://share/?link=${window.urlParams.text}`);
 		</script>
 	</head>
 	<body>
+		<script>
+			const gotourl = `fb-messenger://share/?link=${window.urlParams.text}`;
+			document.addEventListener("visibilitychange", () => {
+				if (document.hidden) {
+					window.close();
+				}
+			}, false);
+			window.location.replace(gotourl);
+			setTimeout(() => {
+				window.location.replace("https://www.messenger.com/t");
+			}, 7000);
+		</script>
 	</body>
 </html>
